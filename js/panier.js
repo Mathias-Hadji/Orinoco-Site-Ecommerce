@@ -33,7 +33,6 @@ for (let i = 0; i < tabPanier.length; i++){
 
     // Ajout du code HTML aux élements <article>
     eltArticle.innerHTML = `
-
     <div class="row align-items-center" id="product-bloc">
         <div class="col-9">
             <figure>
@@ -48,7 +47,6 @@ for (let i = 0; i < tabPanier.length; i++){
                 ${priceProductInEuro(tabPanier[i].price)} €
             </div>
         </div>
-        
     </div>
     `
     // Ajout des balises <article> enfants de la <div id ='product'>
@@ -241,6 +239,7 @@ formOrder.addEventListener('submit', function(e){
         console.log('erreur de saisie dans le formulaire')
     }
 })
+
 
 
 
