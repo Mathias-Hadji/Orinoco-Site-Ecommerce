@@ -80,7 +80,7 @@ formOrder.firstName.addEventListener('change', function(){
 })
 
 const validFirstName = function(inputFirstName) {
-    const firstNameRegExp = new RegExp('^[a-zA-Z éèêëàâîïôöûü-]+$', 'g')
+    const firstNameRegExp = new RegExp('^[a-zA-Zéèêëàâîïôöûü-]+$', 'g')
 
     const small = inputFirstName.nextElementSibling
 
@@ -105,7 +105,7 @@ formOrder.lastName.addEventListener('change', function(){
 })
 
 const validLastName = function(inputLastName){
-    const lastNameRegExp = new RegExp('^[a-zA-Z éèêëàâîïôöûü-]+$', 'g')
+    const lastNameRegExp = new RegExp('^[a-zA-Zéèêëàâîïôöûü-]+$', 'g')
 
     const small = inputLastName.nextElementSibling
 
@@ -130,7 +130,7 @@ formOrder.address.addEventListener('change', function(){
 })
 
 const validAddress = function(inputAddress){
-    const addressRegExp = new RegExp('^[1-9]+[a-zA-Z éèêëàâîïôöûü-]+$', 'g')
+    const addressRegExp = new RegExp('^[1-9]+[a-zA-Zéèêëàâîïôöûü-]+$', 'g')
 
     const small = inputAddress.nextElementSibling
 
@@ -156,7 +156,7 @@ formOrder.city.addEventListener('change', function(){
 })
 
 const validCity = function(inputCity) {
-    const cityRegExp = new RegExp('^[a-zA-Z éèêëàâîïôöûü-]+$', 'g')
+    const cityRegExp = new RegExp('^[a-zA-Zéèêëàâîïôöûü-]+$', 'g')
 
     const small = inputCity.nextElementSibling
 
