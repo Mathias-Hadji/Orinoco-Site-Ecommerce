@@ -1,73 +1,81 @@
-/* La page panier contient un résumé des produits dans le panier, le prix total,
-et un formulaire permettant de passer une commande. */
+/* La page panier :
+
+1. Affiche à l'utilisateur un résumé des produits qu'il a selectionné
+2. Affiche le prix total des produits du panier
+3. Contient formulaire permettant de passer une commande.
+
+*/
 
 
 
-//-------- Fonction qui permet de convertir en Euro le prix affiché en brut dans l'API --------//
+// ***** Converti le prix des produits en Euro le prix affiché en brut dans l'API *****//
 const priceProductInEuro = (priceProduct) => {
-    return priceProduct / 100;
+    return priceProduct / 100
 }
 
-
-// Création du tableau qui sera envoyé au serveur
-const tabIdProducts = []
-
-// Récupère le contenu du Local Storage pour afficher les produits du panier
+// Récupère le contenu du Local Storage
 let tabPanier = JSON.parse(localStorage.getItem('panier'))
 
+// Initialisation du tableau de produits qui sera envoyé au serveur
+const tabIdProducts = []
+
+// Initialisation de la variable qui stockera le prix total de la commande
 let totalPrice = 0
 
-for (let i = 0; i < tabPanier.length; i++){
 
-    // Recupère les ID des produits et les stock dans le tableau tabIdProducts
-    tabIdProducts.push(tabPanier[i]._id)
+// ***** Affiche à l'utilisateur un résumé des produits qu'il a selectionné ***** //
+const displayProductInPanier = function(){
+    for (let i = 0; i < tabPanier.length; i++){
 
-    // Selection de l'ID product
-    const product = document.getElementById('product')
-
-    // Création des balises <article> enfant de l'ID product
-    const eltArticle = document.createElement('article')
-
-    // Ajout de classes aux élements <article>
-    eltArticle.className = 'card card-body mb-3 shadow-sm bg-white rounded'
-
-    // Ajout du code HTML aux élements <article>
-    eltArticle.innerHTML = `
-    <div class="row align-items-center" id="product-bloc">
-        <div class="col-9">
-            <figure>
-                <div>
-                    <img src="${tabPanier[i].imageUrl}" width="25%" class="mx-3 shadow p-1 bg-white rounded">
-                    <a href="#">${tabPanier[i].name}</a>
+        tabIdProducts.push(tabPanier[i]._id)
+    
+        const product = document.getElementById('product')
+        const eltArticle = document.createElement('article')
+        eltArticle.className = 'card card-body mb-3 shadow-sm bg-white rounded'
+        eltArticle.innerHTML = `
+        <div class="row align-items-center" id="product-bloc">
+            <div class="col-9">
+                <figure>
+                    <div>
+                        <img src="${tabPanier[i].imageUrl}" width="25%" class="mx-3 shadow p-1 bg-white rounded">
+                        <a href="#">${tabPanier[i].name}</a>
+                    </div>
+                </figure>
+            </div>
+            <div class="col-3">
+                <div class="price h5">
+                    ${priceProductInEuro(tabPanier[i].price)} €
                 </div>
-            </figure>
-        </div>
-        <div class="col-3">
-            <div class="price h5">
-                ${priceProductInEuro(tabPanier[i].price)} €
             </div>
         </div>
-    </div>
-    `
-    // Ajout des balises <article> enfants de la <div id ='product'>
-    product.appendChild(eltArticle);
+        `
+        product.appendChild(eltArticle);
+    
+        totalPrice = totalPrice + priceProductInEuro(tabPanier[i].price)
+    }
+}
 
-    // Calcul du prix total de la commande
-    totalPrice = totalPrice + priceProductInEuro(tabPanier[i].price)
+// ***** Affiche le prix total des produits du panier ***** //
+const displayTotalPriceOfPanier = function(){
+    let priceOrder = document.getElementById('price-order');
+    priceOrder.innerHTML = `${totalPrice} €`
+}
+
+if (!tabPanier){
+    const product = document.getElementById('panier-vide')
+    product.innerHTML = `Votre panier est vide.`
+    
+    const blocContent = document.getElementById('bloc-content')
+    blocContent.classList.add('d-none')
+
+} else {
+    displayProductInPanier()
+    displayTotalPriceOfPanier()
 }
 
 
-// Affichage du prix total de la commande
-let priceOrder = document.getElementById('price-order');
-priceOrder.innerHTML = `${totalPrice} €`
 
 
-
-
-
-
-
-// ***************** PARTIE REGEX ***************** //
 
 // Selection du formulaire
 const formOrder = document.getElementById('form-order')
@@ -80,7 +88,7 @@ formOrder.firstName.addEventListener('change', function(){
 })
 
 const validFirstName = function(inputFirstName) {
-    const firstNameRegExp = new RegExp('^[a-zA-Zéèêëàâîïôöûü-]+$', 'g')
+    const firstNameRegExp = new RegExp('^[a-zA-Z éèêëàâîïôöûü-]+$', 'g', 'i')
 
     const small = inputFirstName.nextElementSibling
 
@@ -105,7 +113,7 @@ formOrder.lastName.addEventListener('change', function(){
 })
 
 const validLastName = function(inputLastName){
-    const lastNameRegExp = new RegExp('^[a-zA-Zéèêëàâîïôöûü-]+$', 'g')
+    const lastNameRegExp = new RegExp('^[a-zA-Z éèêëàâîïôöûü-]+$', 'g', 'i')
 
     const small = inputLastName.nextElementSibling
 
@@ -130,7 +138,7 @@ formOrder.address.addEventListener('change', function(){
 })
 
 const validAddress = function(inputAddress){
-    const addressRegExp = new RegExp('^[1-9]+[a-zA-Zéèêëàâîïôöûü-]+$', 'g')
+    const addressRegExp = new RegExp('^[1-9]+[a-zA-Z éèêëàâîïôöûü-]+$', 'g', 'i')
 
     const small = inputAddress.nextElementSibling
 
@@ -148,7 +156,6 @@ const validAddress = function(inputAddress){
 }
 
 
-
 // Validation regex ville
 
 formOrder.city.addEventListener('change', function(){
@@ -156,7 +163,7 @@ formOrder.city.addEventListener('change', function(){
 })
 
 const validCity = function(inputCity) {
-    const cityRegExp = new RegExp('^[a-zA-Zéèêëàâîïôöûü-]+$', 'g')
+    const cityRegExp = new RegExp('^[a-zA-Z éèêëàâîïôöûü-]+$', 'g', 'i')
 
     const small = inputCity.nextElementSibling
 
@@ -200,19 +207,22 @@ const validEmail = function(inputEmail){
 
 
 
-
-//-------- PARTIE ENVOI DU FORMULAIRE AU SERVEUR -------- //
+// Validation globale formulaire
 
 formOrder.addEventListener('submit', function(e){
     e.preventDefault()
- 
+    sendForm()
+})
+
+
+const sendForm = function() {
     if (validEmail(formOrder.email) && validCity(formOrder.city) && validAddress(formOrder.address) && validLastName(formOrder.lastName) && validFirstName(formOrder.firstName)) {
         const formContact = {
-            firstName: formOrder.firstName.value,
-            lastName: formOrder.lastName.value,
-            address: formOrder.address.value,
-            city: formOrder.city.value,
-            email: formOrder.email.value
+            firstName: formOrder.firstName.value.trim(),
+            lastName: formOrder.lastName.value.trim(),
+            address: formOrder.address.value.trim(),
+            city: formOrder.city.value.trim(),
+            email: formOrder.email.value.trim()
         }
         fetch('http://localhost:3000/api/cameras/order', {
             method: 'POST',
@@ -221,24 +231,17 @@ formOrder.addEventListener('submit', function(e){
         })
         .then(response => response.json())
         .then(data => {
-        console.log(data)
-
-        //--------Redirection vers page de confirmation--------
-
-        // Construction de l'URL avec orderID + Prix total
-        // Simule un clique 
-        window.location.href = 'order_confirmation.html?orderId=' + data.orderId + '&totalPrice=' + totalPrice
-
-        // Simule une redirection HTTP:
-        //window.location.replace('order_confirmation.html')
-    
+            window.location.href = 'order_confirmation.html?orderId=' + data.orderId + '&totalPrice=' + totalPrice
         })
         // Affichage des eventuelles erreurs dans la console
         .catch(err => console.log('erreur'))
     } else {
         console.log('erreur de saisie dans le formulaire')
     }
-})
+}
+
+
+
 
 
 

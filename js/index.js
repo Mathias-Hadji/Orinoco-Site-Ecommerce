@@ -1,39 +1,34 @@
-/* La page d'accueil affiche tous les produits disponibles à la vente */
+/* La page d'accueil :
+
+1. affiche tous les produits disponibles à la vente 
+
+*/
 
 
-//-------- Fonction qui permet de convertir en Euro le prix affiché en brut dans l'API --------//
 
+
+// ***** Converti le prix des produits en Euro le prix affiché en brut dans l'API *****//
 const priceProductInEuro = (priceProduct) => {
     return priceProduct / 100;
 }
 
 
-
-//-------- Récupération des données de l'API --------//
-
-// Appel de l'API
+// ***** Récupération des données de l'API ***** //
 fetch("http://localhost:3000/api/cameras")
-
-// Les données renvoyés par le serveur sont au format texte. Il faut alors les convertir au format JSON (objet) pour pouvoir les manipulées en JS
 .then(response => response.json())
-
-// Récupération d'une nouvelle réponse contenant les données au format JSON (tableau d'objets)
-// Traitement des données
 .then(data => {
+    displayProduct(data)
+})
+.catch(error => console.log(error))
 
-    // La boucle for parcour chaque objet du tableau jusqu'à la fin de celui ci
+
+
+// ***** Affichage des différents produits sur la page HTML ***** //
+const displayProduct = function(data){
     for (let i = 0; i < data.length; i++) {
-
-        // Selection de id='product' dans la page HTML
         const product = document.getElementById('product')
-
-        // Création des balises <article> (futur enfant de l'ID product)
         const eltArticle = document.createElement('article')
-
-        // Attribution de classe(s) à la balise <article>
         eltArticle.className = 'col-md-4 my-3'
-
-        // Injection du code HTML dans la balise <article>
         eltArticle.innerHTML = 
         `<div class="card">
             <div>
@@ -48,15 +43,8 @@ fetch("http://localhost:3000/api/cameras")
                 <a class="btn btn-outline-primary" href="product_page.html?id=${data[i]._id}" role="button">Voir le produit</a>
             </div>
         </div>`
-        
-        // Ajout de la balise <article> en tant qu'enfant de id ='product'
         product.appendChild(eltArticle);
     }
-})
-// Affichage des eventuelles erreurs dans la console
-.catch(error => console.log(error))
-
-
-
+}
 
 
