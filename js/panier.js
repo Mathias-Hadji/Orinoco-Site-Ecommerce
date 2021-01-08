@@ -87,7 +87,7 @@ const formOrder = document.getElementById('form-order')
 
 // Validation regex First Name
 const validFirstName = function(inputFirstName) {
-    const firstNameRegExp = new RegExp('^[a-zA-Z éèêëàâîïôöûü-]+$', 'g', 'i')
+    const firstNameRegExp = new RegExp('^[a-z éèêëàâîïôöûü-]+$', 'i')
 
     const small = inputFirstName.nextElementSibling
 
@@ -107,7 +107,7 @@ const validFirstName = function(inputFirstName) {
 
 // Validation regex Last Name
 const validLastName = function(inputLastName){
-    const lastNameRegExp = new RegExp('^[a-zA-Z éèêëàâîïôöûü-]+$', 'g', 'i')
+    const lastNameRegExp = new RegExp('^[a-z éèêëàâîïôöûü-]+$','i')
 
     const small = inputLastName.nextElementSibling
 
@@ -127,7 +127,7 @@ const validLastName = function(inputLastName){
 
 // Validation regex adresse
 const validAddress = function(inputAddress){
-    const addressRegExp = new RegExp('^[1-9]+[a-zA-Z éèêëàâîïôöûü-]+$', 'g', 'i')
+    const addressRegExp = new RegExp('^[1-9]+[a-z éèêëàâîïôöûü-]+$', 'i')
 
     const small = inputAddress.nextElementSibling
 
@@ -147,7 +147,7 @@ const validAddress = function(inputAddress){
 
 // Validation regex ville
 const validCity = function(inputCity) {
-    const cityRegExp = new RegExp('^[a-zA-Z éèêëàâîïôöûü-]+$', 'g', 'i')
+    const cityRegExp = new RegExp('^[a-z éèêëàâîïôöûü-]+$', 'i')
 
     const small = inputCity.nextElementSibling
 
@@ -167,7 +167,7 @@ const validCity = function(inputCity) {
 
 // Validation regex email
 const validEmail = function(inputEmail){
-    const emailRegExp = new RegExp('^[a-zA-Z0-9._-]+[@]{1}[a-zA-Z0-9._-]+[.]{1}[a-z]{2,10}$', 'g')
+    const emailRegExp = new RegExp('^[a-z0-9._-]+[@]{1}[a-z]+[.]{1}[a-z]{2,3}$','i')
 
     const small = inputEmail.nextElementSibling
 
@@ -202,7 +202,8 @@ const sendForm = function() {
         })
         .then(response => response.json())
         .then(data => {
-            window.location.href = 'order_confirmation.html?orderId=' + data.orderId + '&totalPrice=' + totalPrice
+            //window.location.href = 'order_confirmation.html?orderId=' + data.orderId + '&totalPrice=' + totalPrice
+            console.log(data)
         })
         // Affichage des eventuelles erreurs dans la console
         .catch(err => console.log('erreur'))
