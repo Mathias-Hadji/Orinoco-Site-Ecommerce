@@ -49,13 +49,13 @@ const displayCameraDetails = function(data){
         </div>
     </div>
     `
-    product.appendChild(eltArticle);
+    product.appendChild(eltArticle)
 }
 
 
 // ***** Affichage dynamique du titre h1 en fonction du produit selectionné par l'utilisateur ***** //
 const displayTitleProduct = function(data){
-    let titleProduct = document.getElementById('title-product');
+    let titleProduct = document.getElementById('title-product')
     titleProduct.innerHTML =`${data.name}`
 }
 
@@ -101,7 +101,6 @@ const panierUserInLocalStorage = function(data){
         }
     })
 }
-
 
 
 // ***** Appel API en ciblant un produit précis grâce à son à l'ID ***** //
