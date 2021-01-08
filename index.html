@@ -14,36 +14,44 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
 </head>
 
-<body class="min-vh-100">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="index.html">Orinoco</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link active" href="index.html">Accueil <span class="sr-only">(current)</span></a>
+<!-- BODY -->
+<body>
+  <!-- SECTION HEADER -->
+  <header>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="index.html">Orinoco</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link active" href="index.html">Accueil <span class="sr-only">(current)</span></a>
+        </div>
+        <div class="navbar-nav">
+          <a href="panier.html"><i class="fas fa-shopping-cart fa-lg text-dark"></i></a>
+        </div>
       </div>
-      <div class="navbar-nav">
-        <a href="panier.html"><i class="fas fa-shopping-cart fa-lg text-dark"></i></a>
+    </nav>
+    <!-- Main title -->
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <h1 class="display-4">Nos produits</h1>
       </div>
     </div>
-  </nav>
-
-
-  <div class="jumbotron jumbotron-fluid">
+  </header>
+  
+  <!-- SECTION MAIN -->
+  <main>
     <div class="container">
-      <h1 class="display-4">Nos produits</h1>
+      <div class="row" id="product"></div>
     </div>
-  </div>
-    
-  <div class="container">
-    <div class="row" id="product"></div>
-  </div>
-
-
+  </main>
+  
+  <!-- Link js -->
   <script src="js/index.js"></script>
+  <!-- Link jquery for Bootstrap -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
     crossorigin="anonymous">
@@ -53,5 +61,4 @@
     crossorigin="anonymous">
   </script>
 </body>
-
 </html>

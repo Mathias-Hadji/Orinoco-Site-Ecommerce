@@ -14,57 +14,71 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
 </head>
 
-<body class="min-vh-100">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="index.html">Orinoco</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-link active" href="index.html">Accueil <span class="sr-only">(current)</span></a>
+<!-- BODY -->
+<body>
+    <!-- SECTION HEADER -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="index.html">Orinoco</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active" href="index.html">Accueil <span class="sr-only">(current)</span></a>
+                </div>
+            </div>
+        </nav>
+        <!-- Main title -->
+        <div class="container">
+            <div class="row my-5 justify-content-center">
+                <h1>Confirmation de votre commande</h1>
             </div>
         </div>
-    </nav>
+    </header>
+    
 
-    <div class="container">
-        <div class="row my-5 justify-content-center">
-            <h1>Confirmation de votre commande</h1>
-        </div>
-    </div>
-
-
-    <div class="container text-center">
-        <div class="row my-5 justify-content-center">
-            <div>
-                <i class="fas fa-check-circle fa-5x text-success"></i>
+    <!-- SECTION MAIN -->
+    <main>
+        <div class="container text-center">
+            <!-- Bloc Icone -->
+            <div class="row my-5 justify-content-center">
+                <div>
+                    <i class="fas fa-check-circle fa-5x text-success"></i>
+                </div>
+            </div>
+            <!-- Bloc Résumé de la commande -->
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <ul class="list-group">
+                        <li class="list-group-item"><h5>Résumé :</h5></li>
+                        <li class="list-group-item" id="user-order-price"></li>
+                        <li class="list-group-item" id="user-order-id"></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bloc text remerciement -->
+            <div class="row my-5">
+                <div class="col">
+                    <p class="font-weight-bold font-italic">Orinoco vous remercie pour votre commande.</p>
+                </div>
             </div>
         </div>
-        <div class="row justify-content-center">
-            <div class="col-6">
-                <ul class="list-group">
-                    <li class="list-group-item"><h5>Résumé :</h5></li>
-                    <li class="list-group-item" id="user-order-price"></li>
-                    <li class="list-group-item" id="user-order-id"></li>
-                </ul>
-            </div>
-        </div>
-        <div class="row my-5">
-            <div class="col">
-                <p class="font-weight-bold font-italic">Orinoco vous remercie pour votre commande.</p>
-            </div>
-        </div>
-    </div>
+    </main>
+    
 
-
+    <!-- Link js -->
     <script src="js/order_confirmation.js"></script>
+    <!-- Link jquery for Bootstrap -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous">
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous">
+    </script>
 </body>
 
 </html>
