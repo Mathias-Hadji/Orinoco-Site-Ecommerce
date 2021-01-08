@@ -2,7 +2,7 @@
 
 1. Affiche à l'utilisateur un résumé des produits qu'il a selectionné
 2. Affiche le prix total des produits du panier
-3. Contient formulaire permettant de passer une commande.
+3. Contient formulaire permettant de passer une commande
 
 */
 
@@ -21,7 +21,6 @@ const tabIdProducts = []
 
 // Initialisation de la variable qui stockera le prix total de la commande
 let totalPrice = 0
-
 
 // ***** Affiche à l'utilisateur un résumé des produits qu'il a selectionné ***** //
 const displayProductInPanier = function(){
@@ -61,20 +60,25 @@ const displayTotalPriceOfPanier = function(){
     priceOrder.innerHTML = `${totalPrice} €`
 }
 
-if (!tabPanier){
+// ***** Lorsque le panier est vide, affiche un message et retire le formulaire de commande ***** //
+const displayPanierVide = function(){
     const product = document.getElementById('panier-vide')
     product.innerHTML = `Votre panier est vide.`
     
     const blocContent = document.getElementById('bloc-content')
     blocContent.classList.add('d-none')
-
-} else {
-    displayProductInPanier()
-    displayTotalPriceOfPanier()
 }
 
 
-
+// ***** Affiche le panier de l'utilisateur ***** //
+const isPanierExist = function(){
+    if (!tabPanier){
+        displayPanierVide()
+    } else {
+        displayProductInPanier()
+        displayTotalPriceOfPanier()
+    }
+}
 
 
 // Selection du formulaire
@@ -82,11 +86,6 @@ const formOrder = document.getElementById('form-order')
 
 
 // Validation regex First Name
-
-formOrder.firstName.addEventListener('change', function(){
-    validFirstName(this)
-})
-
 const validFirstName = function(inputFirstName) {
     const firstNameRegExp = new RegExp('^[a-zA-Z éèêëàâîïôöûü-]+$', 'g', 'i')
 
@@ -107,11 +106,6 @@ const validFirstName = function(inputFirstName) {
 
 
 // Validation regex Last Name
-
-formOrder.lastName.addEventListener('change', function(){
-    validLastName(this)
-})
-
 const validLastName = function(inputLastName){
     const lastNameRegExp = new RegExp('^[a-zA-Z éèêëàâîïôöûü-]+$', 'g', 'i')
 
@@ -132,11 +126,6 @@ const validLastName = function(inputLastName){
 
 
 // Validation regex adresse
-
-formOrder.address.addEventListener('change', function(){
-    validAddress(this)
-})
-
 const validAddress = function(inputAddress){
     const addressRegExp = new RegExp('^[1-9]+[a-zA-Z éèêëàâîïôöûü-]+$', 'g', 'i')
 
@@ -157,11 +146,6 @@ const validAddress = function(inputAddress){
 
 
 // Validation regex ville
-
-formOrder.city.addEventListener('change', function(){
-    validCity(this)
-})
-
 const validCity = function(inputCity) {
     const cityRegExp = new RegExp('^[a-zA-Z éèêëàâîïôöûü-]+$', 'g', 'i')
 
@@ -182,11 +166,6 @@ const validCity = function(inputCity) {
 
 
 // Validation regex email
-
-formOrder.email.addEventListener('change', function(){
-    validEmail(this)
-})
-
 const validEmail = function(inputEmail){
     const emailRegExp = new RegExp('^[a-zA-Z0-9._-]+[@]{1}[a-zA-Z0-9._-]+[.]{1}[a-z]{2,10}$', 'g')
 
@@ -206,15 +185,7 @@ const validEmail = function(inputEmail){
 }
 
 
-
-// Validation globale formulaire
-
-formOrder.addEventListener('submit', function(e){
-    e.preventDefault()
-    sendForm()
-})
-
-
+// Envoi du formulaire au serveur
 const sendForm = function() {
     if (validEmail(formOrder.email) && validCity(formOrder.city) && validAddress(formOrder.address) && validLastName(formOrder.lastName) && validFirstName(formOrder.firstName)) {
         const formContact = {
@@ -236,12 +207,37 @@ const sendForm = function() {
         // Affichage des eventuelles erreurs dans la console
         .catch(err => console.log('erreur'))
     } else {
-        console.log('erreur de saisie dans le formulaire')
+        console.log(`erreur, la saisie dans le formulaire n'est pas compatible avec les regex`)
     }
 }
 
 
+formOrder.addEventListener('submit', function(e){
+    e.preventDefault()
+    sendForm()
+})
 
+isPanierExist()
+
+formOrder.firstName.addEventListener('change', function(){
+    validFirstName(this)
+})
+
+formOrder.lastName.addEventListener('change', function(){
+    validLastName(this)
+})
+
+formOrder.address.addEventListener('change', function(){
+    validAddress(this)
+})
+
+formOrder.city.addEventListener('change', function(){
+    validCity(this)
+})
+
+formOrder.email.addEventListener('change', function(){
+    validEmail(this)
+})
 
 
 

@@ -20,19 +20,6 @@ const collectIdProductInUrl = function(){
 }
 
 
-// ***** Appel API en ciblant un produit précis grâce à son à l'ID ***** //
-fetch('http://localhost:3000/api/cameras/' + collectIdProductInUrl())
-.then(response => response.json())
-.then(data => {
-    displayCameraDetails(data)
-    displayTitleProduct(data)
-    displayTabLenses(data)
-    panierUserInLocalStorage(data)
-})
-.catch(error => console.log(error))
-
-
-
 // ***** Affichage des caractéristiques de la caméra (nom, prix, description) ***** //
 const displayCameraDetails = function(data){
     const product = document.getElementById('product')
@@ -114,3 +101,16 @@ const panierUserInLocalStorage = function(data){
         }
     })
 }
+
+
+
+// ***** Appel API en ciblant un produit précis grâce à son à l'ID ***** //
+fetch('http://localhost:3000/api/cameras/' + collectIdProductInUrl())
+.then(response => response.json())
+.then(data => {
+    displayCameraDetails(data)
+    displayTitleProduct(data)
+    displayTabLenses(data)
+    panierUserInLocalStorage(data)
+})
+.catch(error => console.log(error))

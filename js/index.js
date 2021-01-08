@@ -5,25 +5,12 @@
 */
 
 
-
-
 // ***** Converti le prix des produits en Euro le prix affiché en brut dans l'API *****//
 const priceProductInEuro = (priceProduct) => {
     return priceProduct / 100;
 }
 
-
-// ***** Récupération des données de l'API ***** //
-fetch("http://localhost:3000/api/cameras")
-.then(response => response.json())
-.then(data => {
-    displayProduct(data)
-})
-.catch(error => console.log(error))
-
-
-
-// ***** Affichage des différents produits sur la page HTML ***** //
+// ***** Affichage des produits sur la page HTML ***** //
 const displayProduct = function(data){
     for (let i = 0; i < data.length; i++) {
         const product = document.getElementById('product')
@@ -48,3 +35,10 @@ const displayProduct = function(data){
 }
 
 
+// ***** Récupération des données de l'API ***** //
+fetch("http://localhost:3000/api/cameras")
+.then(response => response.json())
+.then(data => {
+    displayProduct(data)
+})
+.catch(error => console.log(error))
