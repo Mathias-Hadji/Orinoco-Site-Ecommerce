@@ -95,11 +95,13 @@ const validFirstName = function(inputFirstName) {
         small.innerHTML = 'Valide'
         small.classList.remove('text-danger')
         small.classList.add('text-success')
+        inputFirstName.style.borderColor = "green"
         return true
     } else {
         small.innerHTML = 'Invalide'
         small.classList.remove('text-success')
         small.classList.add('text-danger')
+        inputFirstName.style.borderColor = "red"
         return false
     }
 }
@@ -115,11 +117,13 @@ const validLastName = function(inputLastName){
         small.innerHTML = 'Valide'
         small.classList.remove('text-danger')
         small.classList.add('text-success')
+        inputLastName.style.borderColor = "green"
         return true
     } else {
         small.innerHTML = 'Invalide'
         small.classList.remove('text-success')
         small.classList.add('text-danger')
+        inputLastName.style.borderColor = "red"
         return false
     }
 }
@@ -135,11 +139,13 @@ const validAddress = function(inputAddress){
         small.innerHTML = 'Valide'
         small.classList.remove('text-danger')
         small.classList.add('text-success')
+        inputAddress.style.borderColor = "green"
         return true
     } else {
         small.innerHTML = 'Invalide'
         small.classList.remove('text-success')
         small.classList.add('text-danger')
+        inputAddress.style.borderColor = "red"
         return false
     }
 }
@@ -155,11 +161,13 @@ const validCity = function(inputCity) {
         small.innerHTML = 'Valide'
         small.classList.remove('text-danger')
         small.classList.add('text-success')
+        inputCity.style.borderColor = "green"
         return true
     } else {
         small.innerHTML = 'Invalide'
         small.classList.remove('text-success')
         small.classList.add('text-danger')
+        inputCity.style.borderColor = "red"
         return false
     }
 }
@@ -175,11 +183,13 @@ const validEmail = function(inputEmail){
         small.innerHTML = 'Valide'
         small.classList.remove('text-danger')
         small.classList.add('text-success')
+        inputEmail.style.borderColor = "green"
         return true
     } else {
         small.innerHTML = 'Invalide'
         small.classList.remove('text-success')
         small.classList.add('text-danger')
+        inputEmail.style.borderColor = "red"
         return false
     }
 }
