@@ -71,7 +71,7 @@ const displayPanierVide = function(){
 
 
 // ***** Affiche le panier de l'utilisateur ***** //
-const isPanierExist = function(){
+const ifPanierExist = function(){
     if (!tabPanier){
         displayPanierVide()
     } else {
@@ -218,7 +218,7 @@ formOrder.addEventListener('submit', function(e){
     sendForm()
 })
 
-isPanierExist()
+ifPanierExist()
 
 formOrder.firstName.addEventListener('change', function(){
     validFirstName(this)
