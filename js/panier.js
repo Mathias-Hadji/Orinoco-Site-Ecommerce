@@ -48,7 +48,7 @@ const displayProductInPanier = function(){
             </div>
         </div>
         `
-        product.appendChild(eltArticle);
+        product.appendChild(eltArticle)
     
         totalPrice = totalPrice + priceProductInEuro(tabPanier[i].price)
     }
@@ -202,13 +202,10 @@ const sendForm = function() {
         })
         .then(response => response.json())
         .then(data => {
-            //window.location.href = 'order_confirmation.html?orderId=' + data.orderId + '&totalPrice=' + totalPrice
-            console.log(data)
+            window.location.href = 'order_confirmation.html?orderId=' + data.orderId + '&totalPrice=' + totalPrice
         })
         // Affichage des eventuelles erreurs dans la console
         .catch(err => console.log('erreur'))
-    } else {
-        console.log(`erreur, la saisie dans le formulaire n'est pas compatible avec les regex`)
     }
 }
 
